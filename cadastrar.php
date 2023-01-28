@@ -24,7 +24,7 @@
                     echo"Cadastrado com sucesso! <br>";
                 }
             }catch(PDOException $erro){
-                echo"Erro: usuário não cadastrado foi com sucesso <br>";
+                echo"Erro: usuário não cadastrado <br>";
 
             }
         }
@@ -45,6 +45,9 @@
                 </div>
                 <div class="row-button">
                     <input class="button" type="submit" name="enviar" value="cadastrar">
+                </div>
+                <div class="signup-link">
+                    <a href="login.php">Entrar</a>
                 </div>
             </form>
         </div>

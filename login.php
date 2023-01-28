@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="custom.css">
@@ -16,22 +16,27 @@
         $dados= filter_input_array(INPUT_POST,FILTER_DEFAULT);
         
         if(!empty($dados["enviar"])){
-            $nome = $dados['nome'];
-            $senha = $dados['senha'];
+            $nome_real = $dados['nome'];
+            $senha_real = $dados['senha'];
             
-            $selecionar = "SELECT nome and senha FROM teste WHERE nome='$nome' and senha='$senha'";
+            $selecionar = "SELECT nome, senha FROM teste WHERE nome='$nome_real' and senha='$senha_real'";
             $selecionado = $conn->prepare($selecionar);   
             $selecionado->execute();
-            while($linha = $selecionado->fetch(PDO::FETCH_ASSOC)){
+            $x=0;
             
-                if((!empty($linha['nome']))AND(!empty($linha['senha']))){
-                    echo"Usuário encontrado";
-                }else{
-                    echo"Nome ou senha incorretos";
+            while($linha = $selecionado->fetch(PDO::FETCH_ASSOC)){
+                $nome = $linha["nome"];
+                $senha = $linha["senha"];
+                if(($nome==$nome_real)and($senha==$senha_real)){
+                    header("Location: index.php");
+                    $x = 1;
                 }
+            } 
+            
+            if($x==0){
+                $message = "Usuário não encontrado";
             }
         }
-            
         
     ?>
     <div class="conteudo-formulario">
@@ -47,6 +52,7 @@
                 <div class="row">
                     <label>Senha: </label>
                     <input type="password" name="senha" placeholder="Senha" required>
+                    <div class="text-error"><?php echo $message;?></div>
                 </div>
                 <div class="row-button">
                     <input class="button" type="submit" name="enviar" value="Entrar">
@@ -54,6 +60,8 @@
                 <div class="signup-link">
                     <a href="cadastrar.php">Cadastrar</a>
                 </div>
+
+
             </form>
         </div>
     </div>

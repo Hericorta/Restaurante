@@ -103,7 +103,11 @@ body{
 .form-login .signup-link a:hover {
     color: var(--site-color);
 }
-.falha{
+
+/*Fim formulário*/
+
+.text-error {
+    padding-top: 5px;
+    text-align: center;
     color: #ff0000;
 }
-/*Fim formulário*/
