@@ -1,0 +1,105 @@
+
+:root{
+    --site-color:#A38A00;
+    --background:#37131d;
+    --black:#000;
+}
+
+body{
+    background-color:var(--background);
+}
+
+
+.top{
+    color: var(--black);
+    display: flex;
+    /*background: url("./imagens/fundo-de-madeira_site_restaurante.jpg") no-repeat center;*/
+    background:url("./imagens/fundo-de-madeira_site_restaurante.jpg") no-repeat;
+    height: 100vh;
+    min-height: 500px;
+    background-size: cover;
+    margin: 0px 30px;
+    background-attachment: fixed;
+    font-family: "Ubuntu", sans-serif;
+}
+
+/*Inicio Nav*/
+
+.navbar {
+    color: var(--site-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--background);
+    position: sticky;
+    box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.12);
+    padding: 5px 15px;
+    font-size:35px;
+    top: 0;
+    z-index: 1;
+}
+
+.navbar .navbar-content {
+    display: flex;
+    align-items: center;
+}
+
+.navbar .bars{
+    margin-right: 20px;
+    cursor: pointer;
+    display: none;
+}
+
+
+.navbar .navbar-content .row{
+    margin: 0px 50px;
+    transition: 0.3s all ease;
+    border-radius: 6px;
+    width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar .navbar-content .row a{
+    text-decoration: none;
+    color: var(--site-color);
+    transition: 0.3s all ease ;
+}
+
+.navbar .navbar-content .row:hover{
+    background-color: #4b1a28;
+}
+
+.navbar .navbar-content .row a:hover{
+    color: #fff;
+}
+@media(max-width:759px){
+    .navbar .bars{
+        margin-right: 20px;
+        cursor: pointer;
+        display: inline;
+    }
+    .navbar .navbar-content .row{
+        display: none;
+    }
+    
+
+    .navbar{
+        display: flex;
+        align-items: center;
+        font-size: 20px;
+    }
+}
+/*Fim Nav*/
+
+footer{
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+footer span{
+    color: var(--site-color);
+    font-size: 20px;
+}

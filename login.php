@@ -14,7 +14,7 @@
     <?php
         
         $dados= filter_input_array(INPUT_POST,FILTER_DEFAULT);
-        
+        $message = "";
         if(!empty($dados["enviar"])){
             $nome_real = $dados['nome'];
             $senha_real = $dados['senha'];
@@ -23,12 +23,12 @@
             $selecionado = $conn->prepare($selecionar);   
             $selecionado->execute();
             $x=0;
-            
+            $message = "";
             while($linha = $selecionado->fetch(PDO::FETCH_ASSOC)){
                 $nome = $linha["nome"];
                 $senha = $linha["senha"];
                 if(($nome==$nome_real)and($senha==$senha_real)){
-                    header("Location: index.php");
+                    header("Location: index.html");
                     $x = 1;
                 }
             } 

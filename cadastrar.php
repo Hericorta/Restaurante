@@ -13,6 +13,8 @@
 <body class="d-flex">
     <?php
         $dados= filter_input_array(INPUT_POST,FILTER_DEFAULT);
+        $message = "";
+        $message_2 = "";
         if(!empty($dados["enviar"])){
             try{
                 $inserir = "INSERT INTO teste(nome,senha,created) VALUES (:nome,:senha,NOW())";
@@ -21,10 +23,10 @@
                 $cadastro->bindParam(':senha',$dados['senha'], PDO::PARAM_STR); 
                 $cadastro->execute();
                 if($cadastro->rowcount()){
-                    echo"Cadastrado com sucesso! <br>";
+                    $message_2 = "Cadastrado com sucesso! <br>";
                 }
             }catch(PDOException $erro){
-                echo"Erro: usuário não cadastrado <br>";
+                $message = "Erro: usuário não cadastrado <br>";
 
             }
         }
@@ -42,6 +44,8 @@
                 <div class="row">
                     <label>Senha: </label>
                     <input type="password" name="senha" placeholder="Senha" required>
+                    <div class="text-error"><?php echo $message;?></div>
+                    <div class="text-succes"><?php echo $message_2;?></div>
                 </div>
                 <div class="row-button">
                     <input class="button" type="submit" name="enviar" value="cadastrar">
